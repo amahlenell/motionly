@@ -3,8 +3,9 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { CampaignComparison } from "@/components/campaign-comparison";
 import { CreativePreview } from "@/components/creative-preview";
+import { ProductionJourney } from "@/components/production-journey";
 import { ButtonLink, CallToAction, JsonLd, PageIntro, ServicesGrid, Steps, TextLink } from "@/components/site";
-import { campaignConcepts, campaignForService, markets, pages, positioning, projects, services, servicePath } from "@/lib/content";
+import { campaignConcepts, campaignForService, heroStudy, markets, pages, positioning, projects, services, servicePath } from "@/lib/content";
 import { absolute, breadcrumb, organisation, pageMetadata } from "@/lib/seo";
 
 const infoPaths = ["/work", "/services", "/how-it-works", "/about", "/privacy", "/terms"] as const;
@@ -41,7 +42,7 @@ export default async function ContentPage({ params }: Route) {
         "@type": "Service", name: service.title, description: service.description,
         url: absolute(path), areaServed: markets, provider: organisation,
       }]} />
-      <PageIntro label="Studio services" title={service.title} intro={service.intro} />
+      <PageIntro title={service.title} intro={service.intro} />
       <div className="shell article-grid">
         <section className="reading">
           <h2>What you can create</h2>
@@ -64,32 +65,34 @@ export default async function ContentPage({ params }: Route) {
   switch (path) {
     case "/work":
       content = <>
-        <PageIntro title="See what your content could become." intro="Explore beauty, interiors and fashion concepts built from real-world source photography. Compare the original photos with campaign layouts and see how each direction could work across formats." />
+        <PageIntro title="Selected concepts." intro="Explore how a single photograph can become a campaign." />
         <div className="shell project-list">
           {campaignConcepts.map((concept) => <article key={concept.id} id={concept.id} className="project-detail scroll-reveal">
             <CampaignComparison concept={concept} />
             <div className="project-copy">
-              <p className="eyebrow">Studio concept · {concept.category}</p>
               <h2>{concept.title}</h2>
-              <p><strong>Source asset</strong> {concept.source}</p>
-              <p><strong>Creative direction</strong> {concept.direction}</p>
-              <p><strong>Possible applications</strong> {concept.formats}</p>
-              <p className="image-credit">Photography by <a href={concept.creditUrl}>{concept.credit}</a></p>
+              <p>{concept.direction}</p>
+              <p>{concept.formats}</p>
               <TextLink href={servicePath(concept.service)}>View this service</TextLink>
             </div>
           </article>)}
-          <h2 className="other-studies-heading">More studio motion studies</h2>
+          <h2 className="other-studies-heading">Motion studies</h2>
           {projects.map((project) => <article key={project.id} id={project.id} className="project-detail">
             <CreativePreview asset={project.asset} alt={project.alt} title={project.title} variant={project.id} />
             <div className="project-copy">
-              <p className="eyebrow">Studio concept · {project.category}</p>
               <h2>{project.title}</h2>
-              <p><strong>Source asset</strong> {project.alt}.</p>
-              <p><strong>Creative treatment</strong> {project.treatment}</p>
-              <p><strong>Proposed deliverables</strong> {project.formats}.</p>
+              <p>{project.treatment}</p>
+              <p>{project.formats}.</p>
               <TextLink href={servicePath(project.service)}>View this service</TextLink>
             </div>
           </article>)}
+          <details className="work-credits">
+            <summary>Photo credits</summary>
+            <ul>
+              <li><a href={heroStudy.creditUrl}>{heroStudy.credit}</a></li>
+              {campaignConcepts.map((concept) => <li key={concept.id}><a href={concept.creditUrl}>{concept.credit}</a></li>)}
+            </ul>
+          </details>
         </div>
         <CallToAction />
       </>;
@@ -109,7 +112,8 @@ export default async function ContentPage({ params }: Route) {
         <section className="shell article-end" aria-labelledby="process-heading">
           <h2 className="sr-only" id="process-heading">The creative process</h2><Steps />
         </section>
-        <section className="shell reading article-end"><h2>What should I prepare?</h2><p>A website link and a short brief are enough for the first conversation. Share your strongest photography, logo and brand guidelines once we agree the project direction.</p><h2>What can affect the result?</h2><p>Image resolution, lighting, angles and packaging detail influence the treatments we can use. We’ll flag anything that needs a different source image or creative approach before production.</p></section>
+        <ProductionJourney />
+        <section className="shell reading article-end process-notes"><h2>What should I prepare?</h2><p>A website link and a short brief are enough for the first conversation. Share your strongest photography, logo and brand guidelines once we agree the project direction.</p><h2>What can affect the result?</h2><p>Image resolution, lighting, angles and packaging detail influence the treatments we can use. We’ll flag anything that needs a different source image or creative approach before production.</p></section>
         <CallToAction />
       </>;
       break;

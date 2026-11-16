@@ -12,7 +12,7 @@ export function MobileMenu({ navigation }: { navigation: string[][] }) {
       <summary>Menu</summary>
       <nav aria-label="Mobile navigation">
         {navigation.map(([label, href]) => <Link key={href} href={href} onClick={close}>{label}</Link>)}
-        <Link href="/contact" onClick={close}>Get started</Link>
+        <Link href="/contact" onClick={close}>Start a project</Link>
       </nav>
     </details>
   );

@@ -28,12 +28,10 @@ export function CampaignComparison({ concept, feature = false }: { concept: Camp
         <Image src={concept.asset} alt="" fill sizes={sizes} className="campaign-graded" />
         <div className="campaign-comparison-title">{concept.headline}</div>
       </div>
-      <span className="comparison-corner corner-source">Source photo</span>
-      <span className="comparison-corner corner-campaign">Campaign concept</span>
       <div className="campaign-divider"><span><MoveHorizontal size={18} /></span></div>
     </div>
     <div className="campaign-range">
-      <button type="button" onClick={() => setSplit(100)}>Source photo</button>
+      <button type="button" onClick={() => setSplit(100)}>Original</button>
       <input
         id={id}
         type="range"
@@ -45,7 +43,7 @@ export function CampaignComparison({ concept, feature = false }: { concept: Camp
         aria-valuetext={(100 - split) + "% campaign concept"}
         aria-describedby={id + "-visual"}
       />
-      <button type="button" onClick={() => setSplit(0)}>Campaign concept</button>
+      <button type="button" onClick={() => setSplit(0)}>Concept</button>
     </div>
     <p className="sr-only" id={id + "-visual"}>{concept.alt}. The campaign concept adds colour grading, a new crop and the headline “{concept.headline}”</p>
   </div>;

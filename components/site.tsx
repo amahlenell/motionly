@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Clapperboard, Layers3, PanelsTopLeft } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { MobileMenu } from "@/components/mobile-menu";
 import { campaignConcepts, campaignForService, services, servicePath, steps } from "@/lib/content";
 
@@ -21,7 +21,7 @@ export function Header() {
         <nav aria-label="Main navigation" className="primary-nav">
           {navigation.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
         </nav>
-        <Link href="/contact" className="header-cta">Get started <ArrowUpRight size={16} aria-hidden="true" /></Link>
+        <Link href="/contact" className="header-cta">Start a project <ArrowUpRight size={16} aria-hidden="true" /></Link>
         <MobileMenu navigation={navigation} />
       </div>
     </header>
@@ -33,10 +33,10 @@ export function Footer() {
     <footer className="site-footer">
       <div className="shell">
         <div className="footer-top">
-          <div><Wordmark /><p>We read your brand. We create your content.</p></div>
+          <Wordmark />
           <nav aria-label="Footer navigation">
             {navigation.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
-            <Link href="/contact">Get started</Link>
+            <Link href="/contact">Start a project</Link>
           </nav>
         </div>
         <div className="footer-bottom">
@@ -61,10 +61,9 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Array<Record<
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(payload).replace(/</g, "\\u003c") }} />;
 }
 
-export function PageIntro({ title, intro, label }: { title: string; intro: string; label?: string }) {
+export function PageIntro({ title, intro }: { title: string; intro: string }) {
   return (
     <section className="page-intro shell">
-      {label && <p className="eyebrow">{label}</p>}
       <h1>{title}</h1>
       <p>{intro}</p>
     </section>
@@ -75,47 +74,38 @@ export function WorkGrid() {
   return <div className="work-grid">
     {campaignConcepts.map((project) => (
       <article key={project.id} className="work-card scroll-reveal">
-        <Link className="work-image" href={"/work#" + project.id} aria-label={project.title + " studio concept"}>
-          <Image src={project.asset} alt={project.alt} fill sizes="(max-width: 650px) 92vw, (max-width: 850px) 46vw, 31vw" />
-          <span className="work-badge">Studio concept</span>
-          <span className="work-arrow"><ArrowUpRight size={19} aria-hidden="true" /></span>
+        <Link className="work-link" href={"/work#" + project.id}>
+          <span className="work-image">
+            <Image src={project.asset} alt={project.alt} fill sizes="(max-width: 650px) 92vw, (max-width: 850px) 46vw, 31vw" />
+          </span>
+          <h3 className="work-title">{project.title}<ArrowUpRight size={21} aria-hidden="true" /></h3>
         </Link>
-        <p className="eyebrow">{project.category}</p>
-        <h3><Link href={"/work#" + project.id}>{project.title}</Link></h3>
       </article>
     ))}
   </div>;
 }
 
-const serviceIcons = [Clapperboard, PanelsTopLeft, Layers3];
 const serviceTreatments = [
-  "Make the most of the product photography you already have with short, considered films for launches, websites and ads.",
-  "Turn one clear brand idea into a set of short videos, stills and crops that belong together in the feed.",
-  "Carry one creative direction from campaign hero to seasonal social and web placements.",
+  "Product films for launches, websites and ads.",
+  "Short videos and stills made to work together.",
+  "One creative direction across every placement.",
 ];
 
-export function ServicesGrid() {
-  return <div className="services-grid">
+export function ServicesGrid({ showImages = true }: { showImages?: boolean }) {
+  return <div className={showImages ? "services-grid" : "services-rows"}>
     {services.map((service, index) => {
-      const Icon = serviceIcons[index];
       const campaign = campaignForService(service.slug);
       return (
         <article className="service-card scroll-reveal" key={service.slug}>
-          <Link href={servicePath(service.slug)} className={"service-visual service-visual-" + campaign.tone} aria-label={"View " + service.title + (campaign.tone === "lifestyle" ? " · " + campaign.headline : "")}>
-            <Image src={campaign.asset} alt="" fill sizes="(max-width: 720px) 90vw, 32vw" />
-            {campaign.tone === "lifestyle" && (
-              <span className="service-device" aria-hidden="true">
-                <Image src={campaign.asset} alt="" fill sizes="110px" />
-                <span>{campaign.headline}</span>
-              </span>
-            )}
+          <Link href={servicePath(service.slug)} className="service-link">
+            {showImages && <span className={"service-visual service-visual-" + campaign.tone}>
+              <Image src={campaign.asset} alt="" fill sizes="(max-width: 720px) 90vw, 32vw" />
+            </span>}
+            <div className="service-card-body">
+              <h3>{service.title}<ArrowUpRight size={21} aria-hidden="true" /></h3>
+              <p>{serviceTreatments[index]}</p>
+            </div>
           </Link>
-          <div className="service-card-body">
-            <Icon size={24} strokeWidth={1.35} aria-hidden="true" />
-            <h3>{service.title}</h3>
-            <p>{serviceTreatments[index]}</p>
-            <TextLink href={servicePath(service.slug)}>Explore {service.label.toLowerCase()}</TextLink>
-          </div>
         </article>
       );
     })}
@@ -126,7 +116,6 @@ export function Steps() {
   return <ol className="steps">
     {steps.map((step) => (
       <li key={step.title}>
-        <span className="step-arrow"><ArrowRight size={20} strokeWidth={1.4} aria-hidden="true" /></span>
         <h3>{step.title}</h3>
         <p>{step.text}</p>
       </li>
@@ -137,7 +126,7 @@ export function Steps() {
 export function CallToAction() {
   return <section className="cta-section">
     <div className="shell cta-inner">
-      <div><h2>Your next campaign could start here.</h2><p>Tell us what you’re launching and show us the assets you already have.</p></div>
+      <h2>Have a project in mind?</h2>
       <ButtonLink href="/contact" light>Start a project</ButtonLink>
     </div>
   </section>;

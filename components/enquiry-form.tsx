@@ -71,7 +71,7 @@ export function EnquiryForm({ source, website, service }: { source: string; webs
       <label>Target timeline <span>(optional)</span><input name="timeline" maxLength={100} placeholder="e.g. Late February" /></label>
       <label>Budget and currency <span>(optional)</span><input name="budget" maxLength={100} placeholder="e.g. NZ$2,000–3,000" /></label>
     </div>
-    <p className="form-note">We use these details to review and respond to your enquiry. Read our <Link href="/privacy">privacy policy</Link>.</p>
+    <p className="form-note"><Link href="/privacy">Privacy policy</Link></p>
     <button type="submit" className="button" disabled={status.kind === "sending"}>{status.kind === "sending" ? "Sending…" : "Send enquiry"} <ArrowUpRight size={17} aria-hidden="true" /></button>
     <p className={"form-message" + (status.kind === "error" ? " form-error" : "")} aria-live="polite">{status.message}</p>
   </form>;

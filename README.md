@@ -13,7 +13,7 @@ npm run build
 npm run typecheck
 ```
 
-The work page shows three editorial campaign concepts from credited, licensed photographs, alongside the original generated-image motion studies. The comparisons show an original photograph and a static art-direction concept. Examples are labelled throughout.
+The work page shows three editorial campaign concepts from credited, licensed photographs, alongside the original generated-image motion studies. The comparisons show an original photograph and a static art-direction concept. The homepage hero uses an original generated studio visual.
 
 ## Brand and photography
 
@@ -23,7 +23,7 @@ Editorial photography is distributed under the [Unsplash License](https://unspla
 
 | Asset | Photographer |
 | --- | --- |
-| Hero studio concept | [Marco Palumbo](https://unsplash.com/photos/a-silhouette-holds-a-bottle-of-serum-mkJ35YDCImM) |
+| Silhouette source photograph | [Marco Palumbo](https://unsplash.com/photos/a-silhouette-holds-a-bottle-of-serum-mkJ35YDCImM) |
 | Beauty studio concept | [Maria Lupan](https://unsplash.com/photos/a-person-holding-a-bottle-of-essential-oil-in-their-hands-TczKr5LWuJ0) |
 | Interiors studio concept | [Seyed Amir Mohammad Tabatabaee](https://unsplash.com/photos/wooden-chairs-and-a-table-bathed-in-warm-sunlight-26648RNXUK0) |
 | Fashion studio concept | [Katerina Kerdi](https://unsplash.com/photos/woman-walking-on-sand-dunes-during-daytime-_OyMf5BbAxA) |
