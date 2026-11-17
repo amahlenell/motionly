@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Instrument_Serif } from "next/font/google";
 import { Footer, Header } from "@/components/site";
+import { WebAnalytics } from "@/components/web-analytics";
 import { siteUrl } from "@/lib/seo";
 import "./globals.css";
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
+        <WebAnalytics />
       </body>
     </html>
   );

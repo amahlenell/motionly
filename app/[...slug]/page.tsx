@@ -126,8 +126,8 @@ export default async function ContentPage({ params }: Route) {
       break;
     case "/privacy":
       content = <>
-        <PageIntro title="Privacy policy" intro="How Motionly uses the information you share when you enquire about a project." />
-        <section className="shell reading article-end"><h2>What we collect</h2><p>The enquiry form asks for your name, email, business, project details and optionally your website, timeline and budget. A submission timestamp and referral source help us manage enquiries. We also use a short-lived, keyed identifier to limit automated submissions.</p><h2>How we use it</h2><p>We use enquiry details to review your brief, respond, prepare a scope and manage follow-up. Our hosting and database providers process information to operate the website and store enquiries.</p><h2>Contact us about privacy</h2><p>Use the <Link href="/contact">contact form</Link> to ask about your information or request a correction or deletion.</p></section>
+        <PageIntro title="Privacy policy" intro="How Motionly handles project enquiries and website analytics." />
+        <section className="shell reading article-end"><h2>What we collect</h2><p>The enquiry form asks for your name, email, business, project details and optionally your website, timeline and budget. A submission timestamp and referral source help us manage enquiries. We also use a short-lived, keyed identifier to limit automated submissions.</p><h2>How we use it</h2><p>We use enquiry details to review your brief, respond, prepare a scope and manage follow-up. Our hosting and database providers process information to operate the website and store enquiries.</p><h2>Website analytics</h2><p>We use Vercel Web Analytics to understand which pages people visit and how they find Motionly. Vercel processes page visits to provide traffic reports. <a href="https://vercel.com/docs/analytics/privacy-policy">Vercel Web Analytics privacy details</a>.</p><h2>Contact us about privacy</h2><p>Use the <Link href="/contact">contact form</Link> to ask about your information or request a correction or deletion.</p></section>
       </>;
       break;
     case "/terms":
