@@ -1,6 +1,6 @@
 # Motionly
 
-Phase 1 website for Motionly, a done-for-you AI-assisted creative studio.
+Website for Motionly, an AI-assisted creative studio. Built with Next.js, TypeScript and Tailwind CSS.
 
 ## Develop and check
 
@@ -38,6 +38,6 @@ Enquiries are written to Supabase for human review. The API confirms receipt aft
 
 ## Launch and search
 
-Set `SITE_URL` to the final HTTPS origin and review the privacy and terms copy against the live business and data-handling details. Verify the domain with Google Search Console and Bing Webmaster Tools, optionally set their verification tokens, then submit `/sitemap.xml`. Check live canonicals, `/robots.txt`, Open Graph cards, service JSON-LD and the actual enquiry flow. Vercel previews intentionally block indexing. No tracking scripts or credentials are included.
+Set `SITE_URL` to the final HTTPS origin and review the privacy and terms copy against the live business and data-handling details. Verify the domain with Google Search Console and Bing Webmaster Tools, optionally set their verification tokens, then submit `/sitemap.xml`. Check live canonicals, `/robots.txt`, Open Graph cards, service JSON-LD and the actual enquiry flow. Vercel previews intentionally block indexing. Keep credentials out of source control.
 
 Before launch, verify mobile layouts and run Lighthouse on the homepage, one service page and the enquiry page.
